@@ -1,0 +1,28 @@
+{
+    "liveServer.settings.port": 5501,
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#904755",
+        "activityBar.background": "#904755",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#192b15",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#904755",
+        "statusBar.background": "#6e3641",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#904755",
+        "statusBarItem.remoteBackground": "#6e3641",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#6e3641",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#6e364199",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#6e3641",
+    "cSpell.words": [
+        "forecastday",
+        "maxtemp",
+        "mintemp"
+    ]
+}
