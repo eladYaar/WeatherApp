@@ -1,8 +1,9 @@
 "use strict";
+(() => {
 
-onPageLoad();
-
-function onPageLoad() {
+    onPageLoad();
+    
+    function onPageLoad() {
     const now = updateClock();
     const hour = now.getHours();
     setInterval(updateClock, 1000);
@@ -44,7 +45,7 @@ async function connectDataDisplayWeather(useCurrentPosition = false) {
     } catch (error) {
         if ((error instanceof GeolocationPositionError) && (error.code === 1)) {
             console.log(error.message);
-
+            
         } else {
             alert("oops, something went wrong!");
             console.error(error.message);
@@ -67,50 +68,58 @@ async function getWeatherData(useCurrentPosition = false) {
     } else {
         location = city;
     }
-
+    
     const url = `http://api.weatherapi.com/v1/forecast.json?key=${encodeURIComponent(apiKey)}&q=${encodeURIComponent(location)}&days=3&aqi=no&alerts=no`;
     const response = await axios.get(url);
-
+    
     return response.data;
 }
 
 // UI
 function displayWeather(weather, numberOfDays) {
     const divContainer = document.getElementById("divContainer");
-    document.getElementById("cityNameTitle").innerHTML = weather.location.name;
-    document.getElementById("tempNowDiv").innerHTML = `
-        <h2 id="tempNow">
-            Now: ${weather.current.temp_c}° c
-        </h2>`;
-
-
+    document.getElementById("cityNameTitle").innerHTML = `
+    <h2>${weather.location.name} </h2>
+    `;
+    document.getElementById("tempNowSpan").innerHTML = `
+    <h2 id="tempNow">
+    Now: ${weather.current.temp_c}° c
+    </h2>
+    `;
+    document.getElementById("tempNowIconSpan").innerHTML = `
+    <img src="${weather.current.condition.icon}">
+    `;
+    
+    
     let html = "";
     for (let i = 0; i <= numberOfDays; i++) {
         const forecastday = weather.forecast.forecastday[i];
         html += `
         <div class="card" style="width: 18rem;">
-            <div class="card-body">
+        <div class="card-body">
                 <h4 class="card-title">${forecastday.date}</h4>
                 <img src="${forecastday.day.condition.icon}">
-            </div>
+                </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <h5>
-                    <div>
-                        High:
+                <h5>
+                <div>
+                High:
                         ${forecastday.day.maxtemp_c}° c
-                    </div>                   
+                        </div>                   
                     <div>
-                        Low:
-                        ${forecastday.day.mintemp_c}° c
+                    Low:
+                    ${forecastday.day.mintemp_c}° c
                     </div>
-                     </h5>                    
-                </li>
-            </ul>
-        </div>
-    `;
+                    </h5>                    
+                    </li>
+                    </ul>
+                    </div>
+                    `;
     }
     divContainer.innerHTML = html;
-
+    
     document.getElementById("cityBox").value = "";
 }
+
+})();
